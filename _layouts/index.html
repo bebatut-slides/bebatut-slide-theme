@@ -25,7 +25,7 @@ layout: base
             </td>
             <td>
                 <span class="text-nowrap">
-                    <h5><a href="{% if page.talk.external_link %}{{ page.talk.external_link }}{% else %}{{ site.baseurl }}/{{ page.url }}{% endif %}">{{ page.talk.title | escape }}</a></h5>
+                    <h5><a href="{% if page.external_link %}{{ page.external_link }}{% else %}{{ site.baseurl }}/{{ page.url }}{% endif %}">{{ page.talk.title | escape }}</a></h5>
                     {% if page.talk.summary %}
                         <div>{{ event.excerpt }}</div>
                     {% endif %}
