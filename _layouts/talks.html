@@ -1,0 +1,56 @@
+---
+layout: base
+---
+{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+
+
+<div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Title</th>
+          <th class="is-hidden-mobile">Duration</th>
+          <th class="is-hidden-mobile">Event</th>
+          <th class="is-hidden-mobile">Location</th>
+          <th class="is-hidden-mobile">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for talk in page.talks %}
+        <tr>
+            <td>
+                <span class="text-nowrap">{{ talk.event.date | date: date_format }}</span>
+            </td>
+            <td>
+                <span class="text-nowrap">
+                    <h5><a href="{{ talk.talk.link }}">{{ talk.talk.title | escape }}</a></h5>
+                    {% if talk.talk.summary %}
+                        <div>{{ event.excerpt }}</div>
+                    {% endif %}
+                </span>
+            </td>
+            <td class="is-hidden-mobile">
+                <span class="text-nowrap">{{ talk.talk.duration }}</span>
+            </td>
+            <td class="is-hidden-mobile">
+                <span class="text-nowrap">
+                    {% if talk.event.link %}
+                        <a href="{{ talk.event.link }}">{{ talk.event.name | escape }}</a>
+                    {% else %}
+                        {{ talk.event.name | escape }}
+                    {% endif %}
+                </span>
+            </td>
+            <td class="is-hidden-mobile">
+                {% if talk.event.location.city %} {{ talk.event.location.city }}, {% endif %}
+                {{ talk.event.location.country }}
+            </td>
+            <td class="is-hidden-mobile">
+                {% if talk.event.source %} <a href="{{ talk.talk.source }}"><i class="fab fa-github"></i></a>{% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
